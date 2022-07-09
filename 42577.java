@@ -7,20 +7,16 @@ class Solution {
 		boolean answer = true;
 		HashMap<Integer, String> map = new HashMap<>();
 		
-		for(int i = 0; i<phone_book.length; i++) {
-			map.put(i, phone_book[i]);
-		}
-		for(int j = phone_book.length/2 -1; j < phone_book.length; j++) {
-			String number = map.get(j);
-			for(int i = 0; i<phone_book.length/2 + 1; i++) {
-				String comp = phone_book[i];
-				if(number.equals(comp)) {
-					continue;
-				}
-				else if(comp.startsWith(number)||number.startsWith(comp)) {
-					return false;
-				}
+		Arrays.sort(phone_book);
+		String num = null;
+		for(String number : phone_book) {
+			if(num == null) {
+				num = number;
 			}
+			else if (num.startsWith(number)||number.startsWith(num)) {
+				return false;
+			}
+			num = number;
 		}
 		return answer;
 		
