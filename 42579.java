@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
 	public int[] solution(String[] genres, int[] plays) {
-		int[] answer = new int[genres.length - 1];
+
 		HashMap<String, Integer> sumplays = new HashMap<>();
 		HashMap<String, Integer> genrescount = new HashMap<>();
 		HashMap<Integer, Integer> index = new HashMap<>();
@@ -14,6 +14,7 @@ class Solution {
 		}
 		sumplays.forEach((key, value) -> sortsumplays.put(value, key));
 		int x = 0;
+		ArrayList<Integer> arr = new ArrayList<>();
 		for (String genre : sortsumplays.values()) {
 			int i = 1;
 			if (genrescount.get(genre) > 1) {
@@ -29,10 +30,20 @@ class Solution {
 					}
 				}
 				index.remove(idx);
-				answer[x] = idx;
-				x++;
+				arr.add(idx);
 			}
 		}
+		int[] answer = new int[arr.size()];
+		for (int i = 0; i < arr.size(); i++) {
+			answer[i] = arr.get(i);
+		}
 		return answer;
+	}
+
+	public static void main(String[] args) {
+		Solution a = new Solution();
+		String[] arr = { "classic", "pop", "bal", "classic", "pop" };
+		int[] arr2 = { 500, 100, 2000, 100, 700 };
+		a.solution(arr, arr2);
 	}
 }
