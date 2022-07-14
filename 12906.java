@@ -8,14 +8,13 @@ public class Solution {
 		for (int i = 0; i < arr.length; i++) {
 			if (i == 0) {
 				q.offer(arr[i]);
-				size++;
 			} else if (arr[i - 1] == (arr[i])) {
 				continue;
 			} else {
 				q.offer(arr[i]);
-				size++;
 			}
 		}
+		size = q.size();
 		int[] answer = new int[size];
 		for (int i = 0; i < size; i++) {
 			answer[i] = q.poll();
